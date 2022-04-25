@@ -1,5 +1,11 @@
 events.on("ready", function () {
-  scorm.setCompleted();
+  animate_wow();
+
+});
+
+
+function animate_wow(){
+  // scorm.setCompleted();
   // Helper function for add element box list in WOW
   WOW.prototype.addBox = function (element) {
     this.boxes.push(element);
@@ -14,30 +20,23 @@ events.on("ready", function () {
   });
   wow.init();
 
-  $(".wow")
-    .on("scrollSpy:exit", function () {
-      $(this)
-        .css({
-          "animation-name": "none",
-        })
-        .removeClass("animated");
-      wow.addBox(this);
-    })
-    .scrollSpy();
+    $('.pulse').addClass('animated pulse infinite');
+    $('.flash').addClass('wow animated flash infinite');
+    $('.left').addClass('wow animated fadeInLeft');
+    $('.right').addClass('wow animated fadeInRight');
+    $('.down').addClass('wow animated fadeInDown');
+    $('.in').addClass('wow animated fadeIn');
+    $('.up').addClass('wow animated fadeInUp');
+    $('.zoomIn').addClass('wow animated zoomIn');
+    $('.rotateIn').addClass('animated rotateIn');
+    $('.lightSpeedInRight').addClass('animated lightSpeedInRight');
+    $('.jackInTheBox').addClass('animated jackInTheBox');
+    $('.flipInX').addClass('animated flipInX');
+    $('.flipInY').addClass('animated flipInY');
 
-  // var rellax = new Rellax('.rellax');
-});
+    for (let i = 1; i < 18; i++) {
+        var tempo = i / 2;
+        $('.delay' + i).css('animation-delay', tempo + 's')
 
-$(document).scroll(function () {
-  $('section').each(function () {
-      if($(this).position().top <= $(document).scrollTop() && ($(this).position().top + $(this).outerHeight()) > $(document).scrollTop()) {
-          // if($(this).attr('id')==="sec1") {
-          //     $(".logo").addClass("rotate");
-          //     console.log("com rotate");
-          // }           
-          if($(this).attr('id')==="final") {
-              scorm.setCompleted();
-          }           
-      }
-  });
-});
+    }
+}
