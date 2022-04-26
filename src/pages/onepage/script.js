@@ -119,6 +119,7 @@ function quiz(){
       $(this).addClass('active');
 
       _template.attr('res', $(this).attr('res') );
+      _template.attr('indice', $(this).attr('indice') );
 
       confereBtn();
 
@@ -146,6 +147,9 @@ function quiz(){
             _template.find('.active .selector').addClass('neg');
             scorm.saveObject('quiz'+(ind+1), 'negativo');
           }
+
+          avaliacao( ind, _template.attr('correta'), _template.attr('indice')  );
+
         })
 
         var _feed =  null;
@@ -196,6 +200,32 @@ function quiz(){
   }
 
 }
+
+function avaliacao( _indice, _correta, _resposta  ){
+
+ 
+  var _status = "";
+  var _id = "a" + _indice;
+  var _idObj = _id + "Obj";
+
+  if (_resposta == _correta) _status = "correct";
+  else _status = "wrong"
+
+  console.log(_indice + " " + _status + " " + _id + " "+ _idObj);
+
+  ///Essa avaliaçao só serve para o scorm 1.2    
+  scorm.set("cmi.interactions." + _indice + ".id", _id);
+  scorm.set("cmi.interactions." + _indice + ".type", 'choice'); //true-false, choice, fill-in, matching, performance, sequencing, likert, numeric
+  scorm.set("cmi.interactions." + _indice + ".objectives.0.id", _idObj);
+  scorm.set("cmi.interactions." + _indice + ".time", "00:00:12.0"); /// Tempo que foi dada a resposta
+  scorm.set("cmi.interactions." + _indice + ".correct_responses.0.pattern", _correta); /// Resposta correta.
+  scorm.set("cmi.interactions." + _indice + ".student_response", _resposta); /// Resposta dada.
+  scorm.set("cmi.interactions." + _indice + ".result", _status); /// Status da resposta Resposta.
+  scorm.set("cmi.interactions." + _indice + ".weighting", 1); // Peso da questão
+  scorm.set("cmi.interactions." + _indice + ".latency", "00:00:12"); // tempo gasto
+  scorm.save();
+}
+
 
 function controlComplete(){
   $('#controlComplete').isInViewportComplete({
