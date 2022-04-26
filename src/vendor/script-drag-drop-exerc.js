@@ -36,8 +36,14 @@
 
         //verifica a resolução min com base na variavel do CSS Tablet( tema > structure.less )
         var resolucaoMin = (css_var('--tablet', '900') >= $(window).width()) ? true : false;
-        if (BASE.SETTINGS.relacionar)
+        if (BASE.SETTINGS.relacionar){
             resolucaoMin = true;
+        }
+
+        if(resolucaoMin){
+            $('.arrasteInfo').html('É só clicar e colocar na posição que imagina.')
+        }
+
 
         $(BASE.$container).find('.' + BASE.SETTINGS.confirmarClass).hide();
         $(BASE.$container).find('.' + BASE.SETTINGS.itemClass).each(function(indice, item) {
@@ -175,24 +181,6 @@
 
                         } else {
 
-                            // var _obj = $(BASE.$activeItemEncap).clone();
-                            // var _parent = $(BASE.$activeItemEncap).parent();
-                            // $(_obj).addClass("cloneItens");
-                            // _parent.append(_obj);
-                            // $(BASE.$alvoItem).append(BASE.$activeItemEncap);
-                            // $(BASE.$activeItemEncap).attr('encap', 'init');
-
-                            // var parentOld = $(BASE.$activeItem)[0].parentInit;
-                            // $(parentOld).find('.cloneItens').remove();
-                            // $(parentOld).append(BASE.$activeItem);
-                            // $(BASE.$activeItem).removeAttr('encap');
-
-                            // BASE.$activeItem = null;
-                            // BASE.$alvoItem = null;
-                            // BASE.$activeItemEncap = null;
-                            // $('.' + BASE.SETTINGS.featuredItemClass).removeClass(BASE.SETTINGS.featuredItemClass);
-
-                            // return false;
                         }
                     }
 

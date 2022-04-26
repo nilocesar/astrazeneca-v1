@@ -50,6 +50,8 @@ function clock(){
 }
 
 function dragdrop(){
+
+
   $('.arrasteExercicio').each(function(){
     var _template = $(this);
 
@@ -63,7 +65,7 @@ function dragdrop(){
 
     $(_template).drag_drop_exerc({
       itemClass: 'dragDrop_element',
-      limiteAlvo: 1, 
+      limiteAlvo: 1,
       call: function(e) {
           if (e.action.status == 'init') {
               
@@ -213,9 +215,9 @@ function avaliacao( _indice, _correta, _resposta  ){
 
   console.log(_indice + " " + _status + " " + _id + " "+ _idObj);
 
-  ///Essa avaliaçao só serve para o scorm 1.2    
+  ///
   scorm.set("cmi.interactions." + _indice + ".id", _id);
-  scorm.set("cmi.interactions." + _indice + ".type", 'choice'); //true-false, choice, fill-in, matching, performance, sequencing, likert, numeric
+  scorm.set("cmi.interactions." + _indice + ".type", 'choice'); // choice
   scorm.set("cmi.interactions." + _indice + ".objectives.0.id", _idObj);
   scorm.set("cmi.interactions." + _indice + ".time", "00:00:12.0"); /// Tempo que foi dada a resposta
   scorm.set("cmi.interactions." + _indice + ".correct_responses.0.pattern", _correta); /// Resposta correta.
