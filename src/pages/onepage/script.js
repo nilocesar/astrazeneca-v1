@@ -18,6 +18,9 @@ function modal(){
   $('.modalGeral .modal-close').on('click', function(){
     $('.modalGeral').css('display','none');
     $("html").css('overflow-y', 'auto');
+
+    console.log($(this).parent().find('video').get(0));
+    $(this).parent().find('video').get(0).pause();
   })
 }
 
